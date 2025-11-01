@@ -25,7 +25,7 @@ public class DemoApplication {
     return args -> {
       ChatClient chatClient =
           chatClientBuilder
-              .defaultSystem("You are an AWS expert")
+              .defaultSystem("You are an AWS CDK expert")
               .defaultToolCallbacks(new SyncMcpToolCallbackProvider(mcpSyncClients))
               .defaultAdvisors(
                   MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().build())
