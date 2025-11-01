@@ -33,13 +33,16 @@ public class DemoApplication {
               .build();
 
       System.out.println("\nI'm your AI assistant.\n");
-      try (Scanner scanner = new Scanner(System.in)) {
-        while (true) {
-          System.out.print("\nYou: ");
-          System.out.println(
-              "\nASSISTANT: " + chatClient.prompt(scanner.nextLine()).call().content());
-        }
-      }
+	  System.out.println("\nYou: ");
+	  String result = chatClient.prompt("AgentCoreをCDKで作るにはどうすれば良い？").call().content();
+	  System.out.println("\nASSISTANT: " + result);
+    //   try (Scanner scanner = new Scanner(System.in)) {
+    //     while (true) {
+    //       System.out.print("\nYou: ");
+    //       System.out.println(
+    //           "\nASSISTANT: " + chatClient.prompt(scanner.nextLine()).call().content());
+    //     }
+    //   }
     };
   }
 }
