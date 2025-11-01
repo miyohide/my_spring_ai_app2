@@ -2,9 +2,9 @@ package com.github.miyohide.demo;
 
 import io.modelcontextprotocol.client.McpSyncClient;
 import java.util.List;
-import java.util.Scanner;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.mcp.SyncMcpToolCallbackProvider;
 import org.springframework.boot.CommandLineRunner;
@@ -29,20 +29,21 @@ public class DemoApplication {
               .defaultToolCallbacks(new SyncMcpToolCallbackProvider(mcpSyncClients))
               .defaultAdvisors(
                   MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().build())
-                      .build())
+                      .build(),
+                  new SimpleLoggerAdvisor())
               .build();
 
       System.out.println("\nI'm your AI assistant.\n");
-	  System.out.println("\nYou: ");
-	  String result = chatClient.prompt("AgentCoreをCDKで作るにはどうすれば良い？").call().content();
-	  System.out.println("\nASSISTANT: " + result);
-    //   try (Scanner scanner = new Scanner(System.in)) {
-    //     while (true) {
-    //       System.out.print("\nYou: ");
-    //       System.out.println(
-    //           "\nASSISTANT: " + chatClient.prompt(scanner.nextLine()).call().content());
-    //     }
-    //   }
+      System.out.println("\nYou: ");
+      String result = chatClient.prompt("AgentCoreをCDKで作るにはどうすれば良い？").call().content();
+      System.out.println("\nASSISTANT: " + result);
+      //   try (Scanner scanner = new Scanner(System.in)) {
+      //     while (true) {
+      //       System.out.print("\nYou: ");
+      //       System.out.println(
+      //           "\nASSISTANT: " + chatClient.prompt(scanner.nextLine()).call().content());
+      //     }
+      //   }
     };
   }
 }
