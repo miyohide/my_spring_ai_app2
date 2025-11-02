@@ -22,7 +22,9 @@ public class DemoApplication {
 
   @Bean
   public CommandLineRunner chatbot(
-      ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients, ConfigurableApplicationContext context) {
+      ChatClient.Builder chatClientBuilder,
+      List<McpSyncClient> mcpSyncClients,
+      ConfigurableApplicationContext context) {
     return args -> {
       ChatClient chatClient =
           chatClientBuilder
@@ -39,7 +41,7 @@ public class DemoApplication {
       String result = chatClient.prompt("AgentCoreをCDKで作るにはどうすれば良い？").call().content();
       System.out.println("\nASSISTANT: " + result);
 
-	  context.close();
+      context.close();
       //   try (Scanner scanner = new Scanner(System.in)) {
       //     while (true) {
       //       System.out.print("\nYou: ");
