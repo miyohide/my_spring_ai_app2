@@ -42,13 +42,6 @@ public class DemoApplication {
       System.out.println("\nASSISTANT: " + result);
 
       context.close();
-      //   try (Scanner scanner = new Scanner(System.in)) {
-      //     while (true) {
-      //       System.out.print("\nYou: ");
-      //       System.out.println(
-      //           "\nASSISTANT: " + chatClient.prompt(scanner.nextLine()).call().content());
-      //     }
-      //   }
     };
   }
 }
