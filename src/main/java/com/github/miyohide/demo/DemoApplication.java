@@ -10,6 +10,7 @@ import org.springframework.ai.mcp.SyncMcpToolCallbackProvider;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
@@ -21,7 +22,7 @@ public class DemoApplication {
 
   @Bean
   public CommandLineRunner chatbot(
-      ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients) {
+      ChatClient.Builder chatClientBuilder, List<McpSyncClient> mcpSyncClients, ConfigurableApplicationContext context) {
     return args -> {
       ChatClient chatClient =
           chatClientBuilder
@@ -37,6 +38,8 @@ public class DemoApplication {
       System.out.println("\nYou: ");
       String result = chatClient.prompt("AgentCoreをCDKで作るにはどうすれば良い？").call().content();
       System.out.println("\nASSISTANT: " + result);
+
+	  context.close();
       //   try (Scanner scanner = new Scanner(System.in)) {
       //     while (true) {
       //       System.out.print("\nYou: ");
