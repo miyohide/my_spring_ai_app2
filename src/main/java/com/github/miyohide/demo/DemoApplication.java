@@ -36,10 +36,10 @@ public class DemoApplication {
           chatClientBuilder
               .defaultSystem("You are an AWS expert")
               .defaultToolCallbacks(new SyncMcpToolCallbackProvider(mcpSyncClients))
-            //   .defaultAdvisors(
-            //       MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().build())
-            //           .build(),
-            //       new SimpleLoggerAdvisor())
+              .defaultAdvisors(
+                //   MessageChatMemoryAdvisor.builder(MessageWindowChatMemory.builder().build())
+                //       .build(),
+                  new SimpleLoggerAdvisor())
               .build();
 
       System.out.println("\nI'm your AI assistant.\n");
